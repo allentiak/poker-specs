@@ -12,10 +12,25 @@
 (set! *warn-on-reflection* true)
 
 (s/fdef value
-  :args ::specs/hand
+  :args ::specs/card
   :ret nat-int?)
 
 (defn value
+  "returns the numeric value of a card. For now, it only supports 'high' rules."
+  [card]
+  (let [rank (first card)]
+    (cond
+      (or (>= rank 2) (<= rank 10)) (identity rank)
+      (= rank :jack)                11
+      (= rank :queen)               12
+      (= rank :king)                13
+      (= rank :ace)                 14)))
+
+(s/fdef points
+  :args ::specs/hand
+  :ret nat-int?)
+
+(defn points
   [hand]
   (cond
     (s/conform ::specs/royal-flush hand)     10
@@ -30,7 +45,8 @@
     (s/conform ::specs/high-card)            1))
 
 (def ^:private fns-with-specs
-  [`hand/value])
+  [`value
+   `points])
 
 (defn instrument []
   (st/instrument fns-with-specs))
