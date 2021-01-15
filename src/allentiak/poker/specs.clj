@@ -90,3 +90,18 @@
 (comment
   (s/conform ::hand [[3 :diamonds] [2 :spades] [:ace :hearts] [:ace :diamonds] [10 :hearts]]);; => [[3 :diamonds] [2 :spades] [:ace :hearts] [:ace :diamonds] [10 :hearts]]
   )
+
+(s/fdef one-pair?
+  :args ::hand
+  :ret boolean?)
+
+(defn one-pair?
+  [hand]
+  (let [ranks (map first hand)]
+    (some #(> % 1) (vals (frequencies ranks)))))
+
+(one-pair? [[3 :diamonds] [3 :spades] [1 :hearts] [2 :clubs] [4 :clubs]])
+;; => true
+
+(one-pair? [[1 :diamonds][2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
+;; => nil
