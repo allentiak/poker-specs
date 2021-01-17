@@ -13,7 +13,7 @@
 
 (s/fdef value
   :args ::specs/card
-  :ret nat-int?)
+  :ret pos-int?)
 
 (defn value
   "returns the numeric value of a card. For now, it only supports 'high' rules."
