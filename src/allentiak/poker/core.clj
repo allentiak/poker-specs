@@ -33,16 +33,16 @@
 (defn points
   [hand]
   (cond
-    (s/conform ::specs/royal-flush hand)     10
-    (s/conform ::specs/straight-flush hand)  9
-    (s/conform ::specs/four-of-a-kind hand)  8
-    (s/conform ::specs/full-house hand)      7
-    (s/conform ::specs/flush hand)           6
-    (s/conform ::specs/straight hand)        5
-    (s/conform ::specs/three-of-a-kind hand) 4
-    (s/conform ::specs/two-pairs hand)       3
-    (s/conform ::specs/one-pair hand)        2
-    (s/conform ::specs/high-card)            1))
+    (royal-flush? hand)     10
+    (straight-flush? hand)  9
+    (four-of-a-kind? hand)  8
+    (full-house? hand)      7
+    (flush? hand)           6
+    (straight? hand)        5
+    (three-of-a-kind? hand) 4
+    (two-pairs? hand)       3
+    (one-pair? hand)        2
+    :else                   1))
 
 (def ^:private fns-with-specs
   [`value
