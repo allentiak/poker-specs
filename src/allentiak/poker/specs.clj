@@ -82,6 +82,8 @@
   (s/conform ::card [3 :diamonds]);; => [3 :diamonds]
   (s/conform ::card [:jack :spades])
   ;; => [:jack :spades]
+  (s/conform ::card [1 :spades])
+;; => :clojure.spec.alpha/invalid
   )
 
 (s/def ::hand (s/coll-of ::card :kind vector? :count 5 :distinct true))
@@ -89,6 +91,8 @@
 
 (comment
   (s/conform ::hand [[3 :diamonds] [2 :spades] [:ace :hearts] [:ace :diamonds] [10 :hearts]]);; => [[3 :diamonds] [2 :spades] [:ace :hearts] [:ace :diamonds] [10 :hearts]]
+  (s/conform ::hand [[3 :diamonds] [1 :spades] [:ace :hearts] [:ace :diamonds] [10 :hearts]]);
+;; => :clojure.spec.alpha/invalid
   )
 
 (s/fdef one-pair?
