@@ -28,7 +28,7 @@
 
 
 (s/fdef one-pair?
-  :args ::hand
+  :args ::specs/hand
   :ret boolean?)
 
 (defn one-pair?
@@ -49,7 +49,7 @@
   )
 
 (s/fdef two-pairs?
-  :args ::hand
+  :args ::specs/hand
   :ret boolean?)
 
 (defn two-pairs?
