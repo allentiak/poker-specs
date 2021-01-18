@@ -67,6 +67,25 @@
   ;; => false
   )
 
+(s/fdef three-of-a-kind?
+    :args ::specs/hand
+    :ret boolean?)
+
+(defn three-of-a-kind?
+  [hand]
+  (let [ranks (map first hand)]
+    (boolean (seq (filter #(= % 3) (vals (frequencies ranks)))))))
+
+(comment
+  (three-of-a-kind? [[3 :diamonds] [3 :spades] [3 :hearts] [2 :clubs] [4 :clubs]])
+;; => true
+
+  ;; FIXME: the card '[1 :diamonds]' should not conform...
+  ;; Maybe should check spec first?
+  (three-of-a-kind? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
+;; => false
+)
+
 (s/fdef points
   :args ::specs/hand
   :ret nat-int?)
@@ -89,7 +108,8 @@
   [`value
    `points
    `one-pair?
-   `two-pairs?])
+   `two-pairs?
+   `three-of-a-kind?])
 
 (defn instrument []
   (st/instrument fns-with-specs))
