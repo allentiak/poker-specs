@@ -34,7 +34,7 @@
 (defn one-pair?
   [hand]
   (let [ranks (map first hand)]
-    (boolean (seq (filter #(> % 1) (vals (frequencies ranks)))))))
+    (= 1 (count (filter #(= % 2) (vals (frequencies ranks)))))))
 
 (comment
   ;; FIXME: the card '[1 :hearts]' should not conform...
@@ -55,7 +55,7 @@
 (defn two-pairs?
   [hand]
   (let [ranks (map first hand)]
-    (= 2 (count (filter #(> % 1) (vals (frequencies ranks)))))))
+    (= 2 (count (filter #(= % 2) (vals (frequencies ranks)))))))
 
 (comment
   (two-pairs? [[3 :diamonds] [3 :spades] [2 :hearts] [2 :clubs] [4 :clubs]])
