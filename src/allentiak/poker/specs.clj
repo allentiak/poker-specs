@@ -100,8 +100,12 @@
   (let [ranks (map first hand)]
     (some #(> % 1) (vals (frequencies ranks)))))
 
+;; FIXME: the card '[1 :hearts]' should not conform...
+;; Maybe should check spec first?
 (one-pair? [[3 :diamonds] [3 :spades] [1 :hearts] [2 :clubs] [4 :clubs]])
 ;; => true
 
+;; FIXME: the card '[1 :diamonds]' should not conform...
+;; Maybe should check spec first?
 (one-pair? [[1 :diamonds][2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
 ;; => nil
