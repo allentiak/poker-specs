@@ -94,39 +94,3 @@
   (s/conform ::hand [[3 :diamonds] [1 :spades] [:ace :hearts] [:ace :diamonds] [10 :hearts]]);
 ;; => :clojure.spec.alpha/invalid
   )
-
-(s/fdef one-pair?
-  :args ::hand
-  :ret boolean?)
-
-(defn one-pair?
-  [hand]
-  (let [ranks (map first hand)]
-    (some #(> % 1) (vals (frequencies ranks)))))
-
-;; FIXME: the card '[1 :hearts]' should not conform...
-;; Maybe should check spec first?
-(one-pair? [[3 :diamonds] [3 :spades] [1 :hearts] [2 :clubs] [4 :clubs]])
-;; => true
-
-;; FIXME: the card '[1 :diamonds]' should not conform...
-;; Maybe should check spec first?
-(one-pair? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
-;; => nil
-
-(s/fdef two-pairs?
-  :args ::hand
-  :ret boolean?)
-
-(defn two-pairs?
-  [hand]
-  (let [ranks (map first hand)]
-    (= 2 (count (filter #(> % 1) (vals (frequencies ranks)))))))
-
-(two-pairs? [[3 :diamonds] [3 :spades] [2 :hearts] [2 :clubs] [4 :clubs]])
-;; => true
-
-;; FIXME: the card '[1 :diamonds]' should not conform...
-;; Maybe should check spec first?
-(two-pairs? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
-;; => false
