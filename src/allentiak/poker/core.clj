@@ -26,7 +26,6 @@
       (= rank :king)                13
       (= rank :ace)                 14)))
 
-
 (s/fdef one-pair?
   :args ::specs/hand
   :ret boolean?)
@@ -68,8 +67,8 @@
   )
 
 (s/fdef three-of-a-kind?
-    :args ::specs/hand
-    :ret boolean?)
+  :args ::specs/hand
+  :ret boolean?)
 
 (defn three-of-a-kind?
   [hand]
@@ -84,11 +83,11 @@
   ;; Maybe should check spec first?
   (three-of-a-kind? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
 ;; => false
-)
+  )
 
 (s/fdef four-of-a-kind?
-    :args ::specs/hand
-    :ret boolean?)
+  :args ::specs/hand
+  :ret boolean?)
 
 (defn four-of-a-kind?
   [hand]
@@ -97,17 +96,17 @@
 
 (comment
   (four-of-a-kind? [[3 :diamonds] [3 :spades] [3 :hearts] [3 :clubs] [4 :clubs]])
-;; => true
+  ;; => true
 
   ;; FIXME: the card '[1 :diamonds]' should not conform...
   ;; Maybe should check spec first?
   (four-of-a-kind? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
-;; => false
-)
+  ;; => false
+  )
 
 (s/fdef full-house?
-    :args ::specs/hand
-    :ret boolean?)
+  :args ::specs/hand
+  :ret boolean?)
 
 (defn full-house?
   [hand]
@@ -124,8 +123,9 @@
   ;; => false
 
   (full-house? [[3 :diamonds] [3 :spades] [3 :hearts] [2 :clubs] [2 :diamonds]])
+  ;; => true
+  )
 ;; => true
-)
 
 (s/fdef points
   :args ::specs/hand
