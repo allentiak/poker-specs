@@ -107,5 +107,22 @@
 
 ;; FIXME: the card '[1 :diamonds]' should not conform...
 ;; Maybe should check spec first?
-(one-pair? [[1 :diamonds][2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
+(one-pair? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
 ;; => nil
+
+(s/fdef two-pairs?
+  :args ::hand
+  :ret boolean?)
+
+(defn two-pairs?
+  [hand]
+  (let [ranks (map first hand)]
+    (= 2 (count (filter #(> % 1) (vals (frequencies ranks)))))))
+
+(two-pairs? [[3 :diamonds] [3 :spades] [2 :hearts] [2 :clubs] [4 :clubs]])
+;; => true
+
+;; FIXME: the card '[1 :diamonds]' should not conform...
+;; Maybe should check spec first?
+(two-pairs? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
+;; => false
