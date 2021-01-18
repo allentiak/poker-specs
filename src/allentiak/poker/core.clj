@@ -20,11 +20,21 @@
   [card]
   (let [rank (first card)]
     (cond
-      (or (>= rank 2) (<= rank 10)) (identity rank)
       (= rank :jack)                11
       (= rank :queen)               12
       (= rank :king)                13
-      (= rank :ace)                 14)))
+      (= rank :ace)                 14
+      ;; this comparison should be the last one to avoid a casting exception
+      (or (>= rank 2) (<= rank 10)) (identity rank))))
+
+(comment
+  (value [2 :spades])
+  ;; => 2
+  (value [2 :hearts])
+  ;; => 2
+  (value [:jack :hearts])
+  ;; => 11
+  )
 
 (s/fdef one-pair?
   :args ::specs/hand
