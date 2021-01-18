@@ -125,7 +125,25 @@
   (full-house? [[3 :diamonds] [3 :spades] [3 :hearts] [2 :clubs] [2 :diamonds]])
   ;; => true
   )
+
+(s/fdef flush?
+  :args ::specs/hand
+  :ret boolean?)
+
+(defn flush?
+  [hand]
+  (let [suites (map second hand)]
+    (boolean (seq (filter #(= % 5) (vals (frequencies suites)))))))
+
+(comment
+  (flush? [[3 :diamonds] [3 :spades] [3 :hearts] [3 :clubs] [4 :clubs]])
+;; => false
+
+  ;; FIXME: the card '[1 :diamonds]' should not conform...
+  ;; Maybe should check spec first?
+  (flush? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
 ;; => true
+  )
 
 (s/fdef points
   :args ::specs/hand
@@ -152,7 +170,8 @@
    `two-pairs?
    `three-of-a-kind?
    `four-of-a-kind?
-   `full-house?])
+   `full-house?
+   `flush?])
 
 (defn instrument []
   (st/instrument fns-with-specs))
