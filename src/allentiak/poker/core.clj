@@ -34,7 +34,7 @@
 (defn one-pair?
   [hand]
   (let [ranks (map first hand)]
-    (some #(> % 1) (vals (frequencies ranks)))))
+    (boolean (seq (filter #(> % 1) (vals (frequencies ranks)))))))
 
 (comment
   ;; FIXME: the card '[1 :hearts]' should not conform...
@@ -45,7 +45,7 @@
   ;; FIXME: the card '[1 :diamonds]' should not conform...
   ;; Maybe should check spec first?
   (one-pair? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
-  ;; => nil
+  ;; => false
   )
 
 (s/fdef two-pairs?
