@@ -87,7 +87,9 @@
 
 (def ^:private fns-with-specs
   [`value
-   `points])
+   `points
+   `one-pair?
+   `two-pairs?])
 
 (defn instrument []
   (st/instrument fns-with-specs))
