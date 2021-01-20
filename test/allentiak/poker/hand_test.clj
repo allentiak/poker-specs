@@ -1,5 +1,5 @@
-(ns allentiak.poker.core-test
-  (:require [allentiak.poker.core :as sut]
+(ns allentiak.poker.hand-test
+  (:require [allentiak.poker.hand :as sut]
             [clojure.test :as t]))
 
 (def hand-with-a-pair [[3 :diamonds] [3 :spades] [1 :hearts] [2 :clubs] [4 :clubs]])

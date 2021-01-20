@@ -1,4 +1,4 @@
-(ns allentiak.poker.core
+(ns allentiak.poker.hand
   "Main namespace for the game. This includes all transformation functions.
 
   In addition, there is an `instrument` function that provides a simple
