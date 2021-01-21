@@ -61,3 +61,15 @@
   (testing "not full-house?"
     (is (not (hand/full-house? hand-without-full-house-1)))
     (is (not (hand/full-house? hand-without-full-house-2)))))
+
+(def hand-without-flush [[3 :diamonds] [3 :spades] [3 :hearts] [3 :clubs] [4 :clubs]])
+
+;; FIXME: the card '[1 :diamonds]' should not conform...
+;; Maybe should check spec first?
+(def hand-with-flush [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
+
+(deftest flush-test
+  (testing "flush?"
+    (is (hand/flush? hand-with-flush)))
+  (testing "not flush?"
+    (is (not (hand/flush? hand-without-flush)))))
