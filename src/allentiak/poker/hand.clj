@@ -45,18 +45,6 @@
   (let [ranks (map first hand)]
     (= 1 (count (filter #(= % 2) (vals (frequencies ranks)))))))
 
-(comment
-  ;; FIXME: the card '[1 :hearts]' should not conform...
-  ;; Maybe should check spec first?
-  (one-pair? [[3 :diamonds] [3 :spades] [1 :hearts] [2 :clubs] [4 :clubs]])
-  ;; => true
-
-  ;; FIXME: the card '[1 :diamonds]' should not conform...
-  ;; Maybe should check spec first?
-  (one-pair? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
-  ;; => false
-  )
-
 (s/fdef two-pairs?
   :args ::specs/hand
   :ret boolean?)
@@ -65,16 +53,6 @@
   [hand]
   (let [ranks (map first hand)]
     (= 2 (count (filter #(= % 2) (vals (frequencies ranks)))))))
-
-(comment
-  (two-pairs? [[3 :diamonds] [3 :spades] [2 :hearts] [2 :clubs] [4 :clubs]])
-  ;; => true
-
-  ;; FIXME: the card '[1 :diamonds]' should not conform...
-  ;; Maybe should check spec first?
-  (two-pairs? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
-  ;; => false
-  )
 
 (s/fdef three-of-a-kind?
   :args ::specs/hand
@@ -85,16 +63,6 @@
   (let [ranks (map first hand)]
     (boolean (seq (filter #(= % 3) (vals (frequencies ranks)))))))
 
-(comment
-  (three-of-a-kind? [[3 :diamonds] [3 :spades] [3 :hearts] [2 :clubs] [4 :clubs]])
-;; => true
-
-  ;; FIXME: the card '[1 :diamonds]' should not conform...
-  ;; Maybe should check spec first?
-  (three-of-a-kind? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
-;; => false
-  )
-
 (s/fdef four-of-a-kind?
   :args ::specs/hand
   :ret boolean?)
@@ -103,16 +71,6 @@
   [hand]
   (let [ranks (map first hand)]
     (boolean (seq (filter #(= % 4) (vals (frequencies ranks)))))))
-
-(comment
-  (four-of-a-kind? [[3 :diamonds] [3 :spades] [3 :hearts] [3 :clubs] [4 :clubs]])
-  ;; => true
-
-  ;; FIXME: the card '[1 :diamonds]' should not conform...
-  ;; Maybe should check spec first?
-  (four-of-a-kind? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
-  ;; => false
-  )
 
 (s/fdef full-house?
   :args ::specs/hand
@@ -123,19 +81,6 @@
   (and (one-pair? hand)
        (three-of-a-kind? hand)))
 
-(comment
-  (full-house? [[3 :diamonds] [3 :spades] [3 :hearts] [3 :clubs] [4 :clubs]])
-  ;; => false
-
-  ;; FIXME: the card '[1 :diamonds]' should not conform...
-  ;; Maybe should check spec first?
-  (full-house? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
-  ;; => false
-
-  (full-house? [[3 :diamonds] [3 :spades] [3 :hearts] [2 :clubs] [2 :diamonds]])
-  ;; => true
-  )
-
 (s/fdef flush?
   :args ::specs/hand
   :ret boolean?)
@@ -144,16 +89,6 @@
   [hand]
   (let [suites (map second hand)]
     (boolean (seq (filter #(= % 5) (vals (frequencies suites)))))))
-
-(comment
-  (flush? [[3 :diamonds] [3 :spades] [3 :hearts] [3 :clubs] [4 :clubs]])
-;; => false
-
-  ;; FIXME: the card '[1 :diamonds]' should not conform...
-  ;; Maybe should check spec first?
-  (flush? [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
-;; => true
-  )
 
 (s/fdef points
   :args ::specs/hand
