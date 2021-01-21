@@ -27,15 +27,6 @@
       ;; this comparison should be the last one to avoid a casting exception
       (or (>= rank 2) (<= rank 10)) (identity rank))))
 
-(comment
-  (value [2 :spades])
-  ;; => 2
-  (value [2 :hearts])
-  ;; => 2
-  (value [:jack :hearts])
-  ;; => 11
-  )
-
 (s/fdef one-pair?
   :args ::specs/hand
   :ret boolean?)

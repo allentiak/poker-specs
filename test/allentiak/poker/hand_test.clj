@@ -73,3 +73,12 @@
     (is (hand/flush? hand-with-flush)))
   (testing "not flush?"
     (is (not (hand/flush? hand-without-flush)))))
+
+(def non-royal-card-2 [2 :spades])
+(def royal-card-jack [:jack :hearts])
+
+(deftest value-test
+  (testing "value of a non-royal card"
+    (is (= 2 (hand/value non-royal-card-2))))
+  (testing "value of a royal card"
+    (is (= 11 (hand/value royal-card-jack)))))
