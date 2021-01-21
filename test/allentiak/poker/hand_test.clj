@@ -46,3 +46,18 @@
     (is (hand/four-of-a-kind? hand-with-four-of-a-kind)))
   (testing "not four-of-a-kind?"
     (is (not (hand/four-of-a-kind? hand-without-four-of-a-kind)))))
+
+(def hand-without-full-house-1 [[3 :diamonds] [3 :spades] [3 :hearts] [3 :clubs] [4 :clubs]])
+
+;; FIXME: the card '[1 :diamonds]' should not conform...
+;; Maybe should check spec first?
+(def hand-without-full-house-2 [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
+
+(def hand-with-full-house [[3 :diamonds] [3 :spades] [3 :hearts] [2 :clubs] [2 :diamonds]])
+
+(deftest full-house-test
+  (testing "full-house?"
+    (is (hand/full-house? hand-with-full-house)))
+  (testing "not full-house?"
+    (is (not (hand/full-house? hand-without-full-house-1)))
+    (is (not (hand/full-house? hand-without-full-house-2)))))
