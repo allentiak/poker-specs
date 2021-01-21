@@ -34,3 +34,15 @@
     (is (hand/three-of-a-kind? hand-with-three-of-a-kind)))
   (testing "not three-of-a-kind?"
     (is (not (hand/three-of-a-kind? hand-without-three-of-a-kind)))))
+
+(def hand-with-four-of-a-kind [[3 :diamonds] [3 :spades] [3 :hearts] [3 :clubs] [4 :clubs]])
+
+;; FIXME: the card '[1 :diamonds]' should not conform...
+;; Maybe should check spec first?
+(def hand-without-four-of-a-kind [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
+
+(deftest four-of-a-kind-test
+  (testing "four-of-a-kind?"
+    (is (hand/four-of-a-kind? hand-with-four-of-a-kind)))
+  (testing "not four-of-a-kind?"
+    (is (not (hand/four-of-a-kind? hand-without-four-of-a-kind)))))
