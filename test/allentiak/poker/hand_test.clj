@@ -26,3 +26,17 @@
 (deftest is-not-two-pairs-test
   (testing "not two-pairs?"
     (is (not (hand/two-pairs? hand-without-two-pairs)))))
+
+(def hand-with-three-of-a-kind [[3 :diamonds] [3 :spades] [3 :hearts] [2 :clubs] [4 :clubs]])
+
+;; FIXME: the card '[1 :diamonds]' should not conform...
+;; Maybe should check spec first?
+(def hand-without-three-of-a-kind [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
+
+(deftest is-three-of-a-kind-test
+  (testing "three-of-a-kind?"
+    (is (hand/three-of-a-kind? hand-with-three-of-a-kind))))
+
+(deftest is-not-three-of-a-kind-test
+  (testing "not three-of-a-kind?"
+    (is (not (hand/three-of-a-kind? hand-without-three-of-a-kind)))))
