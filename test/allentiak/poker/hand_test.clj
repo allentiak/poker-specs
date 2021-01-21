@@ -2,16 +2,14 @@
   (:require [allentiak.poker.hand :as hand]
             [clojure.test :refer [deftest is testing]]))
 
-(def hand-with-a-pair [[3 :diamonds] [3 :spades] [1 :hearts] [2 :clubs] [4 :clubs]])
-(def hand-without-a-pair [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
+(def hand-with-one-pair [[3 :diamonds] [3 :spades] [1 :hearts] [2 :clubs] [4 :clubs]])
+(def hand-without-one-pair [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
 
-(deftest is-one-pair-test
+(deftest one-pair-test
   (testing "one-pair?"
-    (is (hand/one-pair? hand-with-a-pair))))
-
-(deftest is-not-one-pair-test
+    (is (hand/one-pair? hand-with-one-pair)))
   (testing "not one-pair?"
-    (is (not (hand/one-pair? hand-without-a-pair)))))
+    (is (not (hand/one-pair? hand-without-one-pair)))))
 
 (def hand-with-two-pairs [[3 :diamonds] [3 :spades] [2 :hearts] [2 :clubs] [4 :clubs]])
 
@@ -19,11 +17,9 @@
 ;; Maybe should check spec first?
 (def hand-without-two-pairs [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
 
-(deftest is-two-pairs-test
+(deftest two-pairs-test
   (testing "two-pairs?"
-    (is (hand/two-pairs? hand-with-two-pairs))))
-
-(deftest is-not-two-pairs-test
+    (is (hand/two-pairs? hand-with-two-pairs)))
   (testing "not two-pairs?"
     (is (not (hand/two-pairs? hand-without-two-pairs)))))
 
@@ -33,10 +29,8 @@
 ;; Maybe should check spec first?
 (def hand-without-three-of-a-kind [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
 
-(deftest is-three-of-a-kind-test
+(deftest three-of-a-kind-test
   (testing "three-of-a-kind?"
-    (is (hand/three-of-a-kind? hand-with-three-of-a-kind))))
-
-(deftest is-not-three-of-a-kind-test
+    (is (hand/three-of-a-kind? hand-with-three-of-a-kind)))
   (testing "not three-of-a-kind?"
     (is (not (hand/three-of-a-kind? hand-without-three-of-a-kind)))))
