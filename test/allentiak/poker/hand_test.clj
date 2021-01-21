@@ -82,3 +82,15 @@
     (is (= 2 (hand/value non-royal-card-2))))
   (testing "value of a royal card"
     (is (= 11 (hand/value royal-card-jack)))))
+
+(def hand-without-straight [[3 :diamonds] [3 :spades] [3 :hearts] [3 :clubs] [4 :clubs]])
+
+;; FIXME: the card '[1 :diamonds]' should not conform...
+;; Maybe should check spec first?
+(def hand-with-straight [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
+
+(deftest straight-test
+  (testing "straight?"
+    (is (hand/straight? hand-with-straight)))
+  (testing "not straight?"
+    (is (not (hand/straight? hand-without-straight)))))

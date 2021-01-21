@@ -81,6 +81,17 @@
   (let [suites (map second hand)]
     (boolean (seq (filter #(= % 5) (vals (frequencies suites)))))))
 
+(s/fdef straight?
+  :args ::specs/hand
+  :ret boolean?)
+
+(defn straight?
+  [hand]
+  (let [actual-values (sort (map value hand))
+        first-expected-value (first actual-values)
+        expected-values (range first-expected-value (+ 5 first-expected-value))]
+    (= actual-values expected-values)))
+
 (s/fdef points
   :args ::specs/hand
   :ret nat-int?)
@@ -107,7 +118,8 @@
    `three-of-a-kind?
    `four-of-a-kind?
    `full-house?
-   `flush?])
+   `flush?
+   `straight?])
 
 (defn instrument []
   (st/instrument fns-with-specs))
