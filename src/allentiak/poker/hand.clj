@@ -101,6 +101,16 @@
   (and (straight? hand)
        (flush? hand)))
 
+(s/fdef royal-flush?
+  :args ::specs/hand
+  :ret boolean?)
+
+(defn royal-flush?
+  [hand]
+  (let [values (sort (map value hand))]
+    (and (straight-flush? hand)
+         (= 10 (first values)))))
+
 (s/fdef points
   :args ::specs/hand
   :ret nat-int?)
@@ -129,7 +139,8 @@
    `full-house?
    `flush?
    `straight?
-   `straight-flush?])
+   `straight-flush?
+   `royal-flush?])
 
 (defn instrument []
   (st/instrument fns-with-specs))

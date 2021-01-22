@@ -113,3 +113,15 @@
     (is (hand/straight-flush? hand-with-straight-flush)))
   (testing "not straight-flush?"
     (is (not (hand/straight-flush? hand-without-straight-flush)))))
+
+(def hand-without-royal-flush [[3 :diamonds] [3 :spades] [3 :hearts] [3 :clubs] [4 :clubs]])
+
+;; FIXME: the card '[1 :diamonds]' should not conform...
+;; Maybe should check spec first?
+(def hand-with-royal-flush [[10 :diamonds] [:jack :diamonds] [:queen :diamonds] [:king :diamonds] [:ace :diamonds]])
+
+(deftest royal-flush-test
+  (testing "royal-flush?"
+    (is (hand/royal-flush? hand-with-royal-flush)))
+  (testing "not royal-flush?"
+    (is (not (hand/royal-flush? hand-without-royal-flush)))))
