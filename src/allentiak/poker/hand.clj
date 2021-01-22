@@ -92,6 +92,15 @@
         expected-values (range first-expected-value (+ 5 first-expected-value))]
     (= actual-values expected-values)))
 
+(s/fdef straight-flush?
+  :args ::specs/hand
+  :ret boolean?)
+
+(defn straight-flush?
+  [hand]
+  (and (straight? hand)
+       (flush? hand)))
+
 (s/fdef points
   :args ::specs/hand
   :ret nat-int?)
@@ -119,7 +128,8 @@
    `four-of-a-kind?
    `full-house?
    `flush?
-   `straight?])
+   `straight?
+   `straight-flush?])
 
 (defn instrument []
   (st/instrument fns-with-specs))
