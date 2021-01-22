@@ -111,6 +111,14 @@
     (and (straight-flush? hand)
          (= 10 (first values)))))
 
+(s/fdef highest-value
+  :args ::specs/hand
+  :ret pos-int?)
+
+(defn highest-value
+  [hand]
+  (apply max (sort (map value hand))))
+
 (s/fdef points
   :args ::specs/hand
   :ret nat-int?)
@@ -140,7 +148,8 @@
    `flush?
    `straight?
    `straight-flush?
-   `royal-flush?])
+   `royal-flush?
+   `highest-value])
 
 (defn instrument []
   (st/instrument fns-with-specs))

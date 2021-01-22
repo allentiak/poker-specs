@@ -133,3 +133,7 @@
     (is (= 5 (hand/points hand-with-straight))))
   (testing "not points"
     (is (= 1 (hand/points hand-without-anything)))))
+
+(deftest highest-value-test
+  (testing "highest-value"
+    (is (= 14 (hand/highest-value hand-without-anything)))))
