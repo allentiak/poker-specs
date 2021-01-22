@@ -94,7 +94,7 @@
 
 ;; FIXME: the card '[1 :diamonds]' should not conform...
 ;; Maybe should check spec first?
-(def hand-with-straight [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :diamonds] [5 :diamonds]])
+(def hand-with-straight [[1 :diamonds] [2 :diamonds] [3 :diamonds] [4 :hearts] [5 :diamonds]])
 
 (deftest straight-test
   (testing "straight?"
