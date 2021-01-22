@@ -125,3 +125,11 @@
     (is (hand/royal-flush? hand-with-royal-flush)))
   (testing "not royal-flush?"
     (is (not (hand/royal-flush? hand-without-royal-flush)))))
+
+(def hand-without-anything [[2 :hearts] [4 :diamonds] [9 :spades] [:ace :clubs] [:king :hearts]])
+
+(deftest points-test
+  (testing "points"
+    (is (= 5 (hand/points hand-with-straight))))
+  (testing "not points"
+    (is (= 1 (hand/points hand-without-anything)))))
