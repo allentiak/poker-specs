@@ -137,6 +137,15 @@
     (one-pair? hand)        2
     :else                   1))
 
+(s/fdef equal-value?
+  :arges (s/cat ::specs/hand ::specs/hand)
+  :ret boolean?)
+
+(defn equal-value?
+  [hand1 hand2]
+  (and (= (points hand1) (points hand2))
+       (= (highest-value hand1) (highest-value hand2))))
+
 (def ^:private fns-with-specs
   [`value
    `points
@@ -149,7 +158,8 @@
    `straight?
    `straight-flush?
    `royal-flush?
-   `highest-value])
+   `highest-value
+   `equal-value?])
 
 (defn instrument []
   (st/instrument fns-with-specs))

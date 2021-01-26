@@ -137,3 +137,7 @@
 (deftest highest-value-test
   (testing "highest-value"
     (is (= 14 (hand/highest-value hand-without-anything)))))
+
+(deftest equal-value-test
+  (testing "equal-value?"
+    (is (hand/equal-value? hand-without-anything hand-without-anything))))
