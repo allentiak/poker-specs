@@ -141,3 +141,7 @@
 (deftest equal-value-test
   (testing "equal-value?"
     (is (hand/equal-value? hand-without-anything hand-without-anything))))
+
+(deftest best-hand-test
+  (testing "best hand"
+    (is (= hand-with-straight (hand/best-hand hand-without-anything hand-with-straight)))))

@@ -146,6 +146,27 @@
   (and (= (points hand1) (points hand2))
        (= (highest-value hand1) (highest-value hand2))))
 
+(s/fdef best-hand
+  :args (s/cat ::specs/hand ::specs/hand)
+  :ret ::specs/hand)
+
+(defn best-hand
+  "This function assumes both hands have non-equal value"
+  [hand1 hand2]
+  (cond (< (points hand1)
+           (points hand2))
+        hand2
+        (> (points hand1)
+           (points hand2))
+        hand1
+        ;; order is important: 'points' should be evaluated before 'highest-value'
+        (< (highest-value hand1)
+           (highest-value hand2))
+        hand2
+        (> (highest-value hand1)
+           (highest-value hand2))
+        hand1))
+
 (def ^:private fns-with-specs
   [`value
    `points
@@ -159,7 +180,8 @@
    `straight-flush?
    `royal-flush?
    `highest-value
-   `equal-value?])
+   `equal-value?
+   `best-hand])
 
 (defn instrument []
   (st/instrument fns-with-specs))
